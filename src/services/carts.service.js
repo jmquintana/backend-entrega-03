@@ -26,7 +26,7 @@ class CartsService {
 
 		// Calculate sub total price of each product
 		products.forEach((product) => {
-			product.subTotal = product.product.price * product.quantity;
+			product.subTotal = product.product?.price * product.quantity || 0;
 		});
 		// Calculate total price of all products
 		const totalPrice = products.reduce((acc, product) => {

@@ -113,9 +113,6 @@ body {
 	/* margin-left: 0.8rem; */
 	text-decoration: none;
 	position: relative;
-}
-
-.profile-icon {
 	color: var(--J-color);
 }
 
@@ -264,12 +261,6 @@ body {
 	font-size: 0.8rem;
 	color: #aaa;
 	width: 100%;
-}
-
-.open-modal-btn {
-	border: 1px solid transparent;
-	color: #efefef;
-	background-color: var(--A-color);
 }
 
 .open-modal-btn:active {

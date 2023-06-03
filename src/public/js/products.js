@@ -1,6 +1,6 @@
 console.log("products.js: loaded");
 
-const cartId = document.querySelector(".profile-cart").id;
+const cartId = document.querySelector(".profile-cart")?.id;
 const forms = document.querySelectorAll(".add-form");
 const products = document.querySelectorAll(".product-item-full");
 const logOutBtn = document.querySelector(".profile-logout");
@@ -127,7 +127,7 @@ const closeModal = () => {
 
 overlay.addEventListener("click", closeModal);
 addProductBtn.addEventListener("click", closeModal);
-openModalBtn.addEventListener("click", openModal);
+openModalBtn?.addEventListener("click", openModal);
 
 const random = (max) => {
 	return Math.floor(Math.random() * max);
@@ -161,6 +161,9 @@ const handleDelete = (e) => {
 		headers: {
 			"Content-Type": "application/json",
 		},
+	}).then(() => {
+		showAlert("Product deleted", "success");
+		window.location.href = "/";
 	});
 };
 

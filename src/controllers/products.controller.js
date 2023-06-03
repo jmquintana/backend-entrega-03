@@ -51,6 +51,8 @@ export async function getPaginatedProducts(req, res) {
 		totalPages,
 	} = await productsService.getPaginatedProducts(filters, options);
 
+	console.log({ isAdmin: user.isAdmin });
+
 	return res.render("products", {
 		products,
 		page,

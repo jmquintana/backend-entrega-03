@@ -17,7 +17,7 @@ router.get("/product/:pid", getProductById);
 
 router.put("/:cid", editProductQuantity);
 
-router.get("/cart/:cid", checkSession, renderCartById);
+router.get("/cart/:cid", checkLogin, renderCartById);
 
 router.get("/register", checkLogged, (req, res) => {
 	res.render("register");

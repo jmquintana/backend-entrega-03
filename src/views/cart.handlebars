@@ -75,9 +75,7 @@
 						</div>
 					</div>
 					<div class="product-card-footer">
-						<div class="product-card-total">
-							{{!-- Total: ${{this.product.price * this.quantity}} --}}
-						</div>
+						<div class="product-card-total"></div>
 					</div>
 				</div>
 			{{else}}
@@ -89,10 +87,21 @@
 			<div class="cart-total-price-container">
 				<div class="cart-total-price-label"> Total: </div>
 				<div class="cart-total-price">
-					$
-					<div class="cart-total-price-value">
-						{{totalPrice}}
-					</div>
+					$<div class="cart-total-price-value">{{totalPrice}}</div>
+				</div>
+			</div>
+			<div class="purchase-buttons">
+				<div class="purchase-btn btn large-btn add-btn">
+					<a href="/purchase">
+						<i class="fas fa-credit-card"></i>
+						&nbsp;Pagar
+					</a>
+				</div>
+				<div class="cancel-btn">
+					<a href="/" class="btn delete-btn large-btn">
+						<i class="fas fa-cancel"></i>
+						&nbsp;Cancelar
+					</a>
 				</div>
 			</div>
 		{{/if}}

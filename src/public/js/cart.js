@@ -5,6 +5,7 @@ const cartQuantity = document.querySelectorAll(".cart-quantity");
 const cartTotal = document.querySelector(".cart-total-price-value");
 const cartId = document.querySelector(".cart-main-container").id;
 const removeProductsBtn = document.querySelectorAll(".remove-products-btn");
+const divPurchaseButtons = document.querySelector(".purchase-buttons");
 
 // Add product to cart
 incrementBtn.forEach((btn) => {
@@ -191,6 +192,7 @@ const checkIfThereAreProducts = () => {
 		const divNoProducts = document.createElement("div");
 		divNoProducts.classList.add("no-products");
 		divNoProducts.innerText = "El carrito está vacío.";
+		divPurchaseButtons.remove();
 		document
 			.querySelector(".cart-products-container")
 			.appendChild(divNoProducts);

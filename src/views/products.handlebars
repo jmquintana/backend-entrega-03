@@ -112,13 +112,6 @@
 	<div class="products-main-container">
 		<div class="list-header">
 			<div class="list-title">Lista de productos</div>
-			{{#if user.isAdmin}}
-				<div title="Cargar nuevo producto" class="open-modal-btn btn btn">
-					{{! <a href="/product"> }}
-					<i class="fas fa-upload"></i>
-					{{! </a> }}
-				</div>
-			{{/if}}
 			<div class="profile-header">
 				<div class="greeting-container">
 					<p class="profile-greeting">Hola,
@@ -126,24 +119,40 @@
 					</p>
 				</div>
 				<div class="profile-icons">
+					{{#if user.isAdmin}}
+						<a
+							title="Cargar nuevo producto"
+							class="profile-icon open-modal-btn"
+							id="{{user.email}}"
+							alt="Cargar nuevo producto"
+						>
+							<i class="fas fa-upload fa-lg"></i>
+						</a>
+					{{else}}
+						<a
+							title="Ver carrito"
+							class="profile-cart profile-icon"
+							href="/cart/{{user.cart._id}}"
+							alt="View cart"
+							id={{user.cart._id}}
+						>
+							<i class="fas fa-shopping-cart fa-lg"></i>
+							{{#if user.cartCount}}
+								<span id="lblCartCount1" class="cart-badge badge-warning">
+									{{user.cartCount}}
+								</span>
+							{{else}}
+								<span
+									id="lblCartCount2"
+									class="cart-badge badge-warning hidden"
+								>
+									0
+								</span>
+							{{/if}}
+						</a>
+					{{/if}}
 					<a
-						class="profile-cart profile-icon"
-						href="/cart/{{user.cart._id}}"
-						alt="View cart"
-						id={{user.cart._id}}
-					>
-						<i class="fas fa-shopping-cart fa-lg"></i>
-						{{#if user.cartCount}}
-							<span id="lblCartCount1" class="cart-badge badge-warning">
-								{{user.cartCount}}
-							</span>
-						{{else}}
-							<span id="lblCartCount2" class="cart-badge badge-warning hidden">
-								0
-							</span>
-						{{/if}}
-					</a>
-					<a
+						title="Ver perfil"
 						class="profile-view profile-icon"
 						href="/profile"
 						alt="View profile"
@@ -151,6 +160,7 @@
 						<i class="fas fa-user fa-lg"></i>
 					</a>
 					<a
+						title="Salir"
 						id="{{user.email}}"
 						class="profile-logout profile-icon"
 						href="/logout"
@@ -205,20 +215,37 @@
 								<div class="no-image">Sin imágenes</div>
 							{{/each}}
 						</div>
-						<form
-							action="api/carts/643c5e9e7c350807cef915d7/product/{{this._id}}"
-							method="POST"
-							id={{this._id}}
-							class="add-form"
-							enctype="multipart/form-data"
-						>
-							<button
-								type="submit"
-								form={{this._id}}
-								class="add-btn btn"
-								name="submit"
-							>Agregar</button>
-						</form>
+						{{#if ../user.isAdmin}}
+							<form
+								action="api/product/:pid/{{this._id}}"
+								method="DELETE"
+								id={{this._id}}
+								class="delete-form"
+								enctype="multipart/form-data"
+							>
+								<button
+									type="submit"
+									form={{this._id}}
+									class="delete-btn btn"
+									name="submit"
+								>Eliminar</button>
+							</form>
+						{{else}}
+							<form
+								action="api/carts/643c5e9e7c350807cef915d7/product/{{this._id}}"
+								method="POST"
+								id={{this._id}}
+								class="add-form"
+								enctype="multipart/form-data"
+							>
+								<button
+									type="submit"
+									form={{this._id}}
+									class="add-btn btn"
+									name="submit"
+								>Agregar</button>
+							</form>
+						{{/if}}
 					</div>
 				{{/each}}
 			</div>
