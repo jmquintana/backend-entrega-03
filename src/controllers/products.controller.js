@@ -66,7 +66,7 @@ export async function renderPaginatedProducts(req, res) {
 
 export async function getProductById(req, res) {
 	const productId = req.params.pid;
-	const product = await productsManager.getProductById(productId);
+	const product = await productsService.getProductById(productId);
 	res.render("product", product[0]);
 }
 

@@ -70,3 +70,9 @@ export async function deleteCart(req, res) {
 	const result = await cartsService.deleteCart(cartId);
 	return res.send({ status: "Success", result });
 }
+
+export async function handlePurchase(req, res) {
+	const cartId = req.params.cid;
+	const result = await cartsService.handlePurchase(cartId);
+	return res.send({ status: "Success", result });
+}

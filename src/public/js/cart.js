@@ -6,6 +6,7 @@ const cartTotal = document.querySelector(".cart-total-price-value");
 const cartId = document.querySelector(".cart-main-container").id;
 const removeProductsBtn = document.querySelectorAll(".remove-products-btn");
 const divPurchaseButtons = document.querySelector(".purchase-buttons");
+const purchaseBtn = document.querySelector(".purchase-btn");
 
 // Add product to cart
 incrementBtn.forEach((btn) => {
@@ -208,3 +209,31 @@ const checkIfThereAreProducts = () => {
 			"none";
 	}
 };
+
+const handlePurchase = (e) => {
+	e.preventDefault();
+	e.stopPropagation();
+	try {
+		fetch(`/api/carts/${cartId}/purchase`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.status === "Success") {
+					showAlert("Purchase completed", "success");
+					// reload page
+					window.location.reload();
+					// window.location.href = "/products";
+				} else {
+					showAlert("Purchase not completed", "error");
+				}
+			});
+	} catch (error) {
+		console.error(error);
+	}
+};
+
+purchaseBtn?.addEventListener("click", handlePurchase);

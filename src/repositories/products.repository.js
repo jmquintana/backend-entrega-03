@@ -46,7 +46,7 @@ class ProductsRepository {
 	getProductById = async (productId) => {
 		try {
 			const result = await productModel.find({ _id: productId }).lean();
-			return result;
+			return result[0];
 		} catch (error) {
 			console.log(error);
 			return error;

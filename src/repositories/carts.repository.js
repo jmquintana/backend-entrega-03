@@ -83,12 +83,15 @@ class CartsRepository {
 
 	updateCart = async (cartId, products) => {
 		try {
-			const updatedCart = await cartsModel.updateOne(
-				{ _id: new ObjectId(cartId) },
-				{
-					$set: { products: products },
-				}
-			);
+			const updatedCart = await cartsModel
+				.updateOne(
+					{ _id: new ObjectId(cartId) },
+					{
+						$set: { products: products },
+					}
+				)
+				.populate("products.product")
+				.lean();
 
 			return updatedCart;
 		} catch (error) {
