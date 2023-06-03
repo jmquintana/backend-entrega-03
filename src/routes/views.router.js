@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { checkLogged, checkLogin, checkSession } from "../middlewares/auth.js";
 import {
-	getPaginatedProducts,
+	renderPaginatedProducts,
 	getProductById,
 } from "../controllers/products.controller.js";
 import {
@@ -11,7 +11,7 @@ import {
 
 const router = Router();
 
-router.get("/", checkLogin, getPaginatedProducts);
+router.get("/", checkLogin, renderPaginatedProducts);
 
 router.get("/product/:pid", getProductById);
 

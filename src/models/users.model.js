@@ -23,6 +23,4 @@ userSchema.pre("findOne", function () {
 	this.populate("cart");
 });
 
-const userModel = mongoose.model(userCollection, userSchema);
-
-export default userModel;
+export const userModel = mongoose.model(userCollection, userSchema);

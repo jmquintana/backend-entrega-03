@@ -75,6 +75,11 @@ const deleteProductFromCart = async (productId, cartId, newQuantity) => {
 	}
 };
 
+// format numbers with locale AR ES
+const formatNumber = (number) => {
+	return new Intl.NumberFormat("es-AR").format(number);
+};
+
 const getProductValues = (e, diff) => {
 	e.stopPropagation();
 	e.preventDefault();
@@ -98,7 +103,7 @@ const updateQuantityLabel = (productId, quantity) => {
 	const productQuantityElement = productElement.querySelector(
 		".product-card-quantity-value"
 	);
-	productQuantityElement.innerText = quantity;
+	productQuantityElement.innerText = formatNumber(quantity);
 };
 
 // update product sub-total
@@ -113,17 +118,20 @@ const updateProductTotal = (productId) => {
 	const productTotalElement = productElement.querySelector(
 		".product-card-total-value"
 	);
-	productTotalElement.innerText = productPriceElement * productQuantityElement;
+	productTotalElement.innerText = formatNumber(
+		productPriceElement * productQuantityElement
+	);
 };
 
 // Update cart total
 const updateCartTotal = () => {
 	let total = 0;
-	const cartSubTotal = document.querySelectorAll(".product-card-total-value");
-	cartSubTotal.forEach((subtotal) => {
-		total += parseInt(subtotal.innerText);
+	const cartSubTotals = document.querySelectorAll(".product-card-total-value");
+	cartSubTotals.forEach((subTotalElement) => {
+		const subTotal = subTotalElement.innerText.replace(/\./g, "");
+		total += parseInt(subTotal);
 	});
-	cartTotal.innerText = total;
+	cartTotal.innerText = formatNumber(total);
 };
 
 //remove all products of the same type from cart

@@ -21,7 +21,7 @@
 						</div>
 						<div class="product-card-details">
 							<div class="product-card-price">
-								$<div class="product-card-price-value">
+								$&nbsp;<div class="product-card-price-value">
 									{{this.product.price}}
 								</div><sup>c/u</sup>
 							</div>
@@ -54,10 +54,10 @@
 							</div>
 							<div class="product-card-total">
 								<div class="product-card-total-label">
-									Subtotal: $
+									Subtotal: $&nbsp;
 								</div>
 								<div class="product-card-total-value">
-									{{this.subTotal}}
+									{{formatNumber this.subTotal}}
 								</div>
 							</div>
 							<form
@@ -85,9 +85,11 @@
 		</div>
 		{{#if products}}
 			<div class="cart-total-price-container">
-				<div class="cart-total-price-label"> Total: </div>
+				<div class="cart-total-price-label"> Total:</div>
 				<div class="cart-total-price">
-					$<div class="cart-total-price-value">{{totalPrice}}</div>
+					$&nbsp;<div class="cart-total-price-value">						
+						{{formatNumber totalPrice}}
+					</div>
 				</div>
 			</div>
 			<div class="purchase-buttons">

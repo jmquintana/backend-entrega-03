@@ -14,7 +14,7 @@ export async function getProducts(req, res) {
 	return res.send({ status: "Success", payload: products });
 }
 
-export async function getPaginatedProducts(req, res) {
+export async function renderPaginatedProducts(req, res) {
 	let { user } = req.session;
 	const { limit, page, category, status, sort } = req.query;
 	const filters = {};
@@ -50,8 +50,6 @@ export async function getPaginatedProducts(req, res) {
 		totalDocs,
 		totalPages,
 	} = await productsService.getPaginatedProducts(filters, options);
-
-	console.log({ isAdmin: user.isAdmin });
 
 	return res.render("products", {
 		products,

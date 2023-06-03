@@ -26,6 +26,14 @@ app.engine("handlebars", handlebars.engine());
 app.set("views", `${__dirname}/views`);
 app.set("view engine", "handlebars");
 
+//Instance handlebars for registering a helper
+const hbs = handlebars.create({});
+
+//Register handlebars helper for number formatting
+hbs.handlebars.registerHelper("formatNumber", function (number) {
+	return new Intl.NumberFormat("es-AR").format(number);
+});
+
 // MiddleWares
 // app.use(cookieParser());
 app.use(
