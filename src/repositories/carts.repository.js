@@ -83,6 +83,7 @@ class CartsRepository {
 
 	updateCart = async (cartId, products) => {
 		try {
+			// update cart and change version
 			const updatedCart = await cartsModel
 				.updateOne(
 					{ _id: new ObjectId(cartId) },

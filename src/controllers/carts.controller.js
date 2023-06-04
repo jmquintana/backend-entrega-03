@@ -1,4 +1,6 @@
 import { cartsService } from "../services/carts.service.js";
+import { ticketsService } from "../services/tickets.service.js";
+import { success, error, validation } from "../api.responser.js";
 
 export async function renderCartById(req, res) {
 	const cartId = req.params.cid;
@@ -7,15 +9,24 @@ export async function renderCartById(req, res) {
 }
 
 export async function editProductQuantity(req, res) {
-	const cartId = req.params.cid;
-	const productId = req.body.productId;
-	const newQuantity = req.body.newQuantity;
-	const result = await cartsService.editProductQuantity(
-		cartId,
-		productId,
-		newQuantity
-	);
-	return res.send({ status: "Success", result });
+	try {
+		const cartId = req.params.cid;
+		const productId = req.body.productId;
+		const newQuantity = req.body.newQuantity;
+		const result = await cartsService.editProductQuantity(
+			cartId,
+			productId,
+			newQuantity
+		);
+		// return res.send({ status: "Success", result });
+		return res.send(
+			success("Product quantity updated successfully", result, 200)
+		);
+	} catch (err) {
+		return res.send(
+			error("Something went wrong while updating product quantity", 500)
+		);
+	}
 }
 
 export async function addCart(req, res) {
@@ -73,6 +84,7 @@ export async function deleteCart(req, res) {
 
 export async function handlePurchase(req, res) {
 	const cartId = req.params.cid;
-	const result = await cartsService.handlePurchase(cartId);
-	return res.send({ status: "Success", result });
+	const userId = req.session.user.email;
+	const result = await ticketsService.handlePurchase(cartId, userId);
+	return res.send(result);
 }

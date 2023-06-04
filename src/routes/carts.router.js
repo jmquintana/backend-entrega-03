@@ -10,12 +10,7 @@ import {
 	deleteCart,
 	handlePurchase,
 } from "../controllers/carts.controller.js";
-import {
-	checkAdmin,
-	checkSession,
-	checkLogin,
-	checkUser,
-} from "../middlewares/auth.js";
+import { checkAdmin, checkUser, checkSession } from "../middlewares/auth.js";
 
 const router = Router();
 
