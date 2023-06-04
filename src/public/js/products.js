@@ -61,8 +61,12 @@ products.forEach((product) => {
 	product.addEventListener("click", (e) => {
 		e.preventDefault();
 		const target = e.target;
-		if (target.classList.contains("add-btn")) return;
-		const productId = target.querySelector(".add-form").id;
+		console.log(target);
+		const classList = target.classList;
+		if (classList.contains("add-btn") || classList.contains("delete-btn"))
+			return;
+		const productId = target.id.slice(4);
+		console.log(productId);
 		if (!productId) return;
 		try {
 			window.location.href = `/product/${productId}`;

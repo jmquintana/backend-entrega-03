@@ -6,7 +6,7 @@ import {
 } from "../middlewares/auth.js";
 import {
 	renderPaginatedProducts,
-	getProductById,
+	renderProduct,
 } from "../controllers/products.controller.js";
 import {
 	renderCartById,
@@ -17,7 +17,7 @@ const router = Router();
 
 router.get("/", checkLogin, renderPaginatedProducts);
 
-router.get("/product/:pid", getProductById);
+router.get("/product/:pid", renderProduct);
 
 router.put("/:cid", editProductQuantity);
 

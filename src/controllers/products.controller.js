@@ -67,7 +67,13 @@ export async function renderPaginatedProducts(req, res) {
 export async function getProductById(req, res) {
 	const productId = req.params.pid;
 	const product = await productsService.getProductById(productId);
-	res.render("product", product[0]);
+	return res.send({ status: "Success", payload: product });
+}
+
+export async function renderProduct(req, res) {
+	const productId = req.params.pid;
+	const product = await productsService.getProductById(productId);
+	res.render("product", product);
 }
 
 export async function addProduct(req, res) {
