@@ -1,5 +1,9 @@
 import { Router } from "express";
-import { checkLogged, checkLogin, checkSession } from "../middlewares/auth.js";
+import {
+	checkRegistered,
+	checkLogin,
+	checkSession,
+} from "../middlewares/auth.js";
 import {
 	renderPaginatedProducts,
 	getProductById,
@@ -19,7 +23,7 @@ router.put("/:cid", editProductQuantity);
 
 router.get("/cart/:cid", checkLogin, renderCartById);
 
-router.get("/register", checkLogged, (req, res) => {
+router.get("/register", checkRegistered, (req, res) => {
 	res.render("register");
 });
 

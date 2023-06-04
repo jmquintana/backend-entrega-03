@@ -10,25 +10,31 @@ import {
 	deleteCart,
 	handlePurchase,
 } from "../controllers/carts.controller.js";
+import {
+	checkAdmin,
+	checkSession,
+	checkLogin,
+	checkUser,
+} from "../middlewares/auth.js";
 
 const router = Router();
 
 router.post("/", addCart);
 
-router.get("/", getCarts);
+router.get("/", checkAdmin, getCarts);
 
-router.get("/:cid", getCartById);
+router.get("/:cid", checkSession, getCartById);
 
-router.post("/:cid/product/:pid", addProductToCart);
+router.post("/:cid/product/:pid", checkUser, addProductToCart);
 
-router.put("/:cid", updateCart);
+router.put("/:cid", checkUser, updateCart);
 
-router.delete("/:cid/product/:pid", deleteProductFromCart);
+router.delete("/:cid/product/:pid", checkUser, deleteProductFromCart);
 
-router.delete("/:cid/allProducts/:pid", deleteAllProductFromCart);
+router.delete("/:cid/allProducts/:pid", checkUser, deleteAllProductFromCart);
 
 router.delete("/:cid", deleteCart);
 
-router.post("/:cid/purchase", handlePurchase);
+router.post("/:cid/purchase", checkUser, handlePurchase);
 
 export default router;

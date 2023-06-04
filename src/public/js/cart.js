@@ -1,3 +1,5 @@
+console.log("loaded cart.js");
+
 const incrementBtn = document.querySelectorAll(".increment-btn");
 const decrementBtn = document.querySelectorAll(".decrement-btn");
 const cartDeleteBtn = document.querySelectorAll(".cart-delete-btn");
@@ -162,21 +164,6 @@ removeProductsBtn.forEach((btn) => {
 		}
 	});
 });
-
-const showAlert = (message, icon) => {
-	Swal.fire({
-		html: message,
-		target: "#custom-target",
-		customClass: {
-			container: "position-absolute",
-		},
-		toast: true,
-		position: "bottom-right",
-		showConfirmButton: false,
-		timer: 1500,
-		icon: icon,
-	});
-};
 
 // Handle responses from server
 const handleAddResponse = (data) => {

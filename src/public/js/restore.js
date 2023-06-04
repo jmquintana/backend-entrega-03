@@ -1,4 +1,4 @@
-console.log("restore.js");
+console.log("loaded restore.js");
 
 const form = document.getElementById("login-form");
 
@@ -29,18 +29,3 @@ form.addEventListener("submit", async (e) => {
 		showAlert("Unable to restore password", "error");
 	}
 });
-
-const showAlert = (message, icon) => {
-	Swal.fire({
-		html: message,
-		target: "#custom-target",
-		customClass: {
-			container: "position-absolute",
-		},
-		toast: true,
-		position: "bottom-right",
-		showConfirmButton: false,
-		timer: 1500,
-		icon: icon,
-	});
-};

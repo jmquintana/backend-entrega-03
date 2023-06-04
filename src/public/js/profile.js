@@ -1,4 +1,4 @@
-console.log("profile.js");
+console.log("loaded profile.js");
 
 const logOutBtn = document.getElementById("logout-btn");
 

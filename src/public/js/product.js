@@ -1,3 +1,5 @@
+console.log("loaded product.js");
+
 const cartId = "643e1a3bcd4d41b659f78f79";
 const form = document.querySelector(".add-form");
 
@@ -20,18 +22,3 @@ form.addEventListener("submit", (e) => {
 		console.log(error);
 	}
 });
-
-const showAlert = (message, icon) => {
-	Swal.fire({
-		html: message,
-		target: "#custom-target",
-		customClass: {
-			container: "position-absolute",
-		},
-		toast: true,
-		position: "bottom-right",
-		showConfirmButton: false,
-		timer: 1500,
-		icon: icon,
-	});
-};

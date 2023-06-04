@@ -1,4 +1,4 @@
-console.log("products.js: loaded");
+console.log("loaded products.js");
 
 const cartId = document.querySelector(".profile-cart")?.id;
 const forms = document.querySelectorAll(".add-form");
@@ -295,21 +295,6 @@ Array.prototype.forEach.call(
 		});
 	}
 );
-
-const showAlert = (message, icon) => {
-	Swal.fire({
-		html: message,
-		target: "#custom-target",
-		customClass: {
-			container: "position-absolute",
-		},
-		toast: true,
-		position: "bottom-right",
-		showConfirmButton: false,
-		timer: 1500,
-		icon: icon,
-	});
-};
 
 const PRODUCTS = [
 	{

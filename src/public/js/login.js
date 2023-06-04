@@ -1,4 +1,4 @@
-console.log("login.js");
+console.log("loaded login.js");
 
 const form = document.getElementById("login-form");
 
@@ -20,27 +20,13 @@ form.addEventListener("submit", async (e) => {
 			if (res.status === 200) {
 				window.location.href = "/";
 			} else {
+				setTimeout(() => (window.location.href = "/register"), 1500);
 				const error = new Error(res.error);
 				throw error;
 			}
 		});
 	} catch (error) {
-		console.error(error);
 		showAlert("Unable to log in", "error");
+		console.error(error);
 	}
 });
-
-const showAlert = (message, icon) => {
-	Swal.fire({
-		html: message,
-		target: "#custom-target",
-		customClass: {
-			container: "position-absolute",
-		},
-		toast: true,
-		position: "bottom-right",
-		showConfirmButton: false,
-		timer: 1500,
-		icon: icon,
-	});
-};
