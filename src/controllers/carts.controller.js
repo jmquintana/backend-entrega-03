@@ -4,7 +4,9 @@ import { success, error, validation } from "../api.responser.js";
 
 export async function renderCartById(req, res) {
 	const cartId = req.params.cid;
+	const user = req.session.user || "guest";
 	const result = await cartsService.getCartById(cartId);
+	result.user = user;
 	return res.render("cart", result);
 }
 

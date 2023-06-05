@@ -37,6 +37,7 @@ body {
 	width: 100vw;
 	height: 100vh;
 	pointer-events: none;
+	z-index: 5000;
 }
 
 .main-container {
@@ -62,17 +63,27 @@ body {
 
 .list-container {
 	width: 100%;
-	padding: 0.5rem 1rem;
+}
+
+.product-list {
+	margin-left: 1rem;
+	margin-right: 1rem;
 }
 
 .list-title {
-	display: flex;
-	align-items: center;
 	margin: 1rem 0.6rem 1rem 0.6rem;
 	color: #15172b;
 	font-size: 1.5rem;
 	font-weight: 700;
 	width: 100%;
+	text-decoration: none;
+}
+
+.list-title * {
+	text-decoration: none;
+	color: #15172b;
+	font-size: 1.5rem;
+	font-weight: 700;
 }
 
 .profile-header {

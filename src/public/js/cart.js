@@ -5,7 +5,7 @@ const decrementBtn = document.querySelectorAll(".decrement-btn");
 const cartDeleteBtn = document.querySelectorAll(".cart-delete-btn");
 const cartQuantity = document.querySelectorAll(".cart-quantity");
 const cartTotal = document.querySelector(".cart-total-price-value");
-const cartId = document.querySelector(".cart-main-container").id;
+const cartId = document.querySelector(".list-container").id;
 const removeProductsBtn = document.querySelectorAll(".remove-products-btn");
 const divPurchaseButtons = document.querySelector(".purchase-buttons");
 const purchaseBtn = document.querySelector(".purchase-btn");
@@ -157,6 +157,7 @@ removeProductsBtn.forEach((btn) => {
 				.then((data) => {
 					document.getElementById(productId).remove();
 					checkIfThereAreProducts();
+					console.log("Se eliminaron productos");
 					return handleDeleteResponse(data);
 				});
 		} catch (error) {
@@ -167,7 +168,9 @@ removeProductsBtn.forEach((btn) => {
 
 // Handle responses from server
 const handleAddResponse = (data) => {
+	console.log(data);
 	if (data.status === "Success") {
+		console.log("Success");
 		showAlert("Product added to cart", "success");
 	} else {
 		showAlert("Product not added to cart", "error");
@@ -212,7 +215,7 @@ const handlePurchase = (e) => {
 				if (data.status === "Success") {
 					showAlert("Purchase completed", "success");
 					// reload page
-					window.location.reload();
+					setTimeout(window.location.reload(), 1500);
 					// window.location.href = "/products";
 				} else {
 					showAlert("Purchase not completed", "error");
