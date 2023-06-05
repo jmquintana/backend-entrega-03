@@ -10,6 +10,16 @@ export async function renderCartById(req, res) {
 	return res.render("cart", result);
 }
 
+export async function renderCarts(req, res) {
+	const result = {};
+	const user = req.session.user || "guest";
+	result.carts = await cartsService.getCarts();
+	result.user = user;
+	console.log({ result });
+	console.log(result.carts[0].products);
+	return res.render("carts", result);
+}
+
 export async function editProductQuantity(req, res) {
 	try {
 		const cartId = req.params.cid;

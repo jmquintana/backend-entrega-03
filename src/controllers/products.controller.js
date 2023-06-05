@@ -71,9 +71,15 @@ export async function getProductById(req, res) {
 }
 
 export async function renderProduct(req, res) {
+	const result = {};
 	const productId = req.params.pid;
+	const cartId = req.session.user?.cart?._id || "";
+	result.cartId = cartId;
+	const user = req.session.user || "guest";
+	result.user = user;
 	const product = await productsService.getProductById(productId);
-	res.render("product", product);
+	result.product = product;
+	res.render("product", result);
 }
 
 export async function addProduct(req, res) {

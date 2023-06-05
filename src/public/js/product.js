@@ -1,11 +1,13 @@
 console.log("loaded product.js");
 
-const cartId = "643e1a3bcd4d41b659f78f79";
+const cartId = document.querySelector(".list-container").id;
 const form = document.querySelector(".add-form");
+const logOutBtn = document.querySelector(".profile-logout");
 
 form.addEventListener("submit", (e) => {
 	e.preventDefault();
 	const productId = e.target.id;
+	console.log({ productId }, { cartId });
 	try {
 		fetch(`/api/carts/${cartId}/product/${productId}`, {
 			method: "POST",
@@ -20,5 +22,29 @@ form.addEventListener("submit", (e) => {
 		showAlert("Product added to cart", "success");
 	} catch (error) {
 		console.log(error);
+	}
+});
+
+logOutBtn.addEventListener("click", async (e) => {
+	e.preventDefault();
+	const email = logOutBtn.id;
+	console.log(email);
+	try {
+		await fetch("/api/sessions/logout", {
+			method: "POST",
+			body: JSON.stringify({ username: email }),
+			header: {
+				"Content-Type": "application/json",
+			},
+		}).then((res) => {
+			if (res.status === 200) {
+				window.location.href = "/login";
+			} else {
+				const error = new Error(res.error);
+				throw error;
+			}
+		});
+	} catch (error) {
+		console.error(error);
 	}
 });

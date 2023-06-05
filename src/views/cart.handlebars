@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/css/product.style.css" />
 <link rel="stylesheet" href="/css/cart.style.css" />
 <div class="main-container">
 	<div id="custom-target"></div>
@@ -18,7 +19,7 @@
 						<a
 							title="Cargar nuevo producto"
 							class="profile-icon open-modal-btn"
-							id="{{user.email}}"
+							{{!-- id="{{user.email}}" --}}
 							alt="Cargar nuevo producto"
 						>
 							<i class="fas fa-upload fa-lg"></i>
@@ -69,7 +70,6 @@
 		<div class="list-container" id="{{cartId}}">
 			<div class="cart-products-container">
 				{{#each products}}
-					{{!-- {{products}} --}}
 					<div class="product-card" id={{this.product._id}}>
 						<div class="product-card-header">
 							<div class="product-card-details">

@@ -21,13 +21,37 @@
 	box-sizing: border-box;
 }
 
+.main-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: normal;
+	align-items: center;
+	height: 100%;
+}
+
 .product-card-main-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	width: 100%;
+	max-width: 840px;
+}
+
+.list-title a {
+	color: #999;
+}
+
+.list-title a:hover {
+	color: #15172b;
+}
+
+.list-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 	margin: 1rem;
-	width: 25rem;
 }
 
 .product-card {

@@ -58,7 +58,7 @@ body {
 	justify-content: space-between;
 	align-items: center;
 	padding: 1rem;
-	padding-right: 1.35rem;
+	/* padding-right: 1.35rem; */
 }
 
 .list-container {
@@ -129,6 +129,12 @@ body {
 
 .profile-icon:hover {
 	color: var(--A-color);
+}
+
+.profile-icon.disabled i {
+	color: #999 !important;
+	pointer-events: none;
+	cursor: default;
 }
 
 .list-item-group {

@@ -7,7 +7,7 @@ class CartsRepository {
 
 	getCarts = async () => {
 		try {
-			const carts = await cartsModel.find();
+			const carts = await cartsModel.find().lean().populate("products.product");
 			return carts;
 		} catch (error) {
 			console.log(error);

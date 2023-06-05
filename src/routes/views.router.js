@@ -3,6 +3,8 @@ import {
 	checkRegistered,
 	checkLogin,
 	checkSession,
+	checkAdmin,
+	checkUser,
 } from "../middlewares/auth.js";
 import {
 	renderPaginatedProducts,
@@ -11,11 +13,14 @@ import {
 import {
 	renderCartById,
 	editProductQuantity,
+	renderCarts,
 } from "../controllers/carts.controller.js";
 
 const router = Router();
 
 router.get("/", checkLogin, renderPaginatedProducts);
+
+router.get("/carts", checkAdmin, renderCarts);
 
 router.get("/product/:pid", renderProduct);
 
