@@ -3,12 +3,17 @@ console.log("loaded product.js");
 const cartId = document.querySelector(".list-container").id;
 const form = document.querySelector(".add-form");
 const logOutBtn = document.querySelector(".profile-logout");
+const cartBadge = document.querySelector(".cart-badge");
 
 form.addEventListener("submit", (e) => {
 	e.preventDefault();
 	const productId = e.target.id;
 	console.log({ productId }, { cartId });
 	try {
+		cartBadge.classList.remove("hidden");
+		cartBadge.innerText = parseInt(cartBadge.innerText) + 1;
+		animateCSS("#lblCartCount1", "flipInY");
+		animateCSS("#lblCartCount2", "flipInY");
 		fetch(`/api/carts/${cartId}/product/${productId}`, {
 			method: "POST",
 			headers: {
